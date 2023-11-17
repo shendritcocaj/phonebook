@@ -80,13 +80,13 @@ function App() {
               address: editedAddress || contact.address,
               city: editedCity || contact.city,
               country: editedCountry || contact.country,
-              email: editedEmail !== undefined ? editedEmail : contact.email,
-              number:
-                editedNumber !== undefined ? editedNumber : contact.number,
+              email: [...contact.email, editedEmail],
+              number: [...contact.number, editedNumber],
             }
           : contact
       )
     );
+    console.log(editedEmail);
     setSelectedContact(null);
   }
 

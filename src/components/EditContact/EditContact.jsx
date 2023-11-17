@@ -23,7 +23,7 @@ const EditContact = ({ selectedContact, onEdit }) => {
       number
     );
   };
-
+  console.log(selectedContact);
   const handleAddNumber = () => {
     setNumber((prevNumbers) => [...prevNumbers, ""]);
   };
@@ -42,6 +42,7 @@ const EditContact = ({ selectedContact, onEdit }) => {
   };
   const handleAddEmail = () => {
     setEmail((prevEmails) => [...prevEmails, ""]);
+    console.log(prevEmails);
   };
 
   const handleEmailChange = (index, value) => {
