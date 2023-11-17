@@ -1,0 +1,14 @@
+.header {
+  background-color: #201e1e;
+  height: auto;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 10rem;
+}
+.header-name {
+  color: #f0ebeb;
+  font-size: 3rem;
+  padding: 1.3rem 2rem;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 1px;
+}

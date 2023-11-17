@@ -1,0 +1,57 @@
+.contact {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+}
+
+.contact-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact-name {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.contact-table {
+  margin-top: 3rem;
+  width: 100%;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.contact-table th {
+  background-color: white;
+}
+.contact-table td,
+.contact-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.contact-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.contact-table tr:hover {
+  background-color: #ddd;
+}
+
+td {
+  text-align: center;
+}
+
+.delete-contact {
+  background-color: #d70606;
+}
+.edit-contact {
+  background-color: rgb(4, 163, 4);
+}
+
+.close {
+  background-color: #d70606;
+}
+
+.contact-selected {
+  background-color: rgb(189, 255, 233);
+}

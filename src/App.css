@@ -1,0 +1,34 @@
+button {
+  width: fit-content;
+  font-size: 1rem;
+  padding: 3px 8px;
+  color: white;
+  background-color: rgb(0, 110, 255);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-num-button,
+.add-email-button {
+  align-self: flex-end;
+  width: 80px;
+  font-size: 1rem;
+  padding: 10px 8px;
+  color: white;
+  background-color: rgb(0, 110, 255);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.selectedContact-email {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
+}

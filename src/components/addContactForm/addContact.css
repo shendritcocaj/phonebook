@@ -1,0 +1,61 @@
+.addContact,
+.editContact {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 3rem;
+}
+
+.register,
+.edit-title {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.form-add-contact,
+.form-edit-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+}
+label {
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+input::placeholder {
+  color: #b0b0b0;
+}
+input {
+  font-size: 1.2rem;
+  padding: 5px;
+  height: 2rem;
+  border-radius: 5px;
+  border: 1px solid rgb(171, 171, 171);
+}
+
+.add-email input,
+.add-number input {
+  width: 100%;
+}
+
+.save-contact {
+  padding: 0.8rem 1.8rem;
+}
+
+.numbers {
+  display: flex;
+  gap: 100px;
+  padding-bottom: 5px;
+}
+
+.delete-number-input,
+.delete-email-input {
+  background-color: #d70606;
+  align-self: flex-end;
+  padding: 0.5rem;
+  margin: 1rem 0;
+}
+
+.hidden {
+  display: none;
+}
