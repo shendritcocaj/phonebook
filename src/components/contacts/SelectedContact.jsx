@@ -8,25 +8,40 @@ const SelectedContact = ({
 }) => {
   const isSelected = selectedContact?.id === contact.id;
 
-  const emails = Array.isArray(contact.email) ? (
-    <ul>
-      {contact.email.map((email, index) => (
-        <li key={index}>{email}</li>
-      ))}
-    </ul>
-  ) : (
-    contact.email
-  );
+  const renderContactInfo = (contactInfo, isEmail) => {
+    return (
+      <ul className="ul-number">
+        {Array.isArray(contactInfo)
+          ? contactInfo.map((group, index) => (
+              <li className="ul-number" key={index}>
+                {Array.isArray(group) ? (
+                  group.map((singleItem, innerIndex) => (
+                    <div key={`${index}-${innerIndex}`}>{singleItem}</div>
+                  ))
+                ) : isEmail ? (
+                  group
+                    .split(",")
+                    .map((singleItem, innerIndex) => (
+                      <div key={`${index}-${innerIndex}`}>{singleItem}</div>
+                    ))
+                ) : (
+                  <div key={`${index}`}>{group}</div>
+                )}
+              </li>
+            ))
+          : contactInfo.split(",").map((singleItem, index) => (
+              <li className="ul-number" key={index}>
+                <div>{singleItem}</div>
+              </li>
+            ))}
+      </ul>
+    );
+  };
 
-  const numbers = Array.isArray(contact.number) ? (
-    <ul>
-      {contact.number.map((number, index) => (
-        <li key={index}>{number}</li>
-      ))}
-    </ul>
-  ) : (
-    contact.number
-  );
+  const emails = renderContactInfo(contact.email, true);
+
+  const numbers = renderContactInfo(contact.number, false);
+
   return (
     <tr key={contact.id}>
       <td>{contact.firstName}</td>

@@ -86,7 +86,7 @@ function App() {
           : contact
       )
     );
-    console.log(editedEmail);
+
     setSelectedContact(null);
   }
 

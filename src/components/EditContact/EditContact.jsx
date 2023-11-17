@@ -23,7 +23,7 @@ const EditContact = ({ selectedContact, onEdit }) => {
       number
     );
   };
-  console.log(selectedContact);
+
   const handleAddNumber = () => {
     setNumber((prevNumbers) => [...prevNumbers, ""]);
   };
@@ -42,7 +42,6 @@ const EditContact = ({ selectedContact, onEdit }) => {
   };
   const handleAddEmail = () => {
     setEmail((prevEmails) => [...prevEmails, ""]);
-    console.log(prevEmails);
   };
 
   const handleEmailChange = (index, value) => {
@@ -71,7 +70,7 @@ const EditContact = ({ selectedContact, onEdit }) => {
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           placeholder="Enter the name"
-          required="true"
+          required={true}
         />
         <label>Last Name:</label>
         <input
@@ -81,7 +80,7 @@ const EditContact = ({ selectedContact, onEdit }) => {
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           placeholder="Enter Last Name"
-          required="true"
+          required={true}
         />
         <label>Address:</label>
         <input
@@ -91,7 +90,7 @@ const EditContact = ({ selectedContact, onEdit }) => {
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           placeholder="Enter Address"
-          required="true"
+          required={true}
         />
         <label>City:</label>
         <input
@@ -101,7 +100,7 @@ const EditContact = ({ selectedContact, onEdit }) => {
           value={city}
           onChange={(e) => setCity(e.target.value)}
           placeholder="Enter City"
-          required="true"
+          required={true}
         />
         <label>Country:</label>
         <input
@@ -111,14 +110,13 @@ const EditContact = ({ selectedContact, onEdit }) => {
           value={country}
           onChange={(e) => setCountry(e.target.value)}
           placeholder="Enter Country"
-          required="true"
+          required={true}
         />
 
         <label>Email:</label>
         <div className="add-email">
           {email.map((email, index) => (
-            <>
-              {" "}
+            <div key={index}>
               <div className="numbers">
                 <input
                   key={index}
@@ -127,7 +125,7 @@ const EditContact = ({ selectedContact, onEdit }) => {
                   value={email}
                   onChange={(e) => handleEmailChange(index, e.target.value)}
                   placeholder={`Enter Email ${index + 1}`}
-                  required
+                  required={true}
                 />
               </div>{" "}
               <button
@@ -141,7 +139,7 @@ const EditContact = ({ selectedContact, onEdit }) => {
               >
                 {email.length > 1 ? "Delete email" : ""}
               </button>
-            </>
+            </div>
           ))}{" "}
         </div>
         <button
@@ -155,16 +153,16 @@ const EditContact = ({ selectedContact, onEdit }) => {
         <label>Number:</label>
         <div className="add-number">
           {number.map((number, index) => (
-            <>
-              <div className="numbers">
+            <div key={index}>
+              <div className="ul-numbers">
                 <input
                   key={index}
-                  className="numbers-input"
+                  className="ul-number"
                   type="number"
                   value={number}
                   onChange={(e) => handleNumberChange(index, e.target.value)}
                   placeholder={`Enter Number ${index + 1}`}
-                  required
+                  required={true}
                 />
               </div>{" "}
               <button
@@ -178,7 +176,7 @@ const EditContact = ({ selectedContact, onEdit }) => {
               >
                 {number.length > 1 ? "Delete number" : ""}
               </button>
-            </>
+            </div>
           ))}{" "}
         </div>
         <button
