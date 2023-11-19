@@ -5,8 +5,14 @@ const SelectedContact = ({
   onDelete,
   onSelection,
   selectedContact,
+  setSelectedContact,
 }) => {
   const isSelected = selectedContact?.id === contact.id;
+
+  const handleDelete = () => {
+    onDelete(contact.id);
+    setSelectedContact(false);
+  };
 
   const renderContactInfo = (contactInfo, isEmail) => {
     return (
@@ -62,7 +68,7 @@ const SelectedContact = ({
       </td>
       <td>
         {" "}
-        <button onClick={() => onDelete(contact.id)} className="delete-contact">
+        <button onClick={handleDelete} className="delete-contact">
           Delete
         </button>{" "}
       </td>

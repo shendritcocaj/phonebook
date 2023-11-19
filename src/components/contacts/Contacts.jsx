@@ -50,6 +50,7 @@ const Contacts = ({
                 onDelete={onDelete}
                 onSelection={onSelection}
                 selectedContact={selectedContact}
+                setSelectedContact={setSelectedContact}
               />
             ))}
           </tbody>
