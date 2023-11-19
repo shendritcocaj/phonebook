@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const EditContact = ({ selectedContact, onEdit }) => {
   const [firstName, setFirstName] = useState("");
@@ -35,11 +35,7 @@ const EditContact = ({ selectedContact, onEdit }) => {
       return updatedNumbers;
     });
   };
-  const handleDeleteNumber = (index) => {
-    if (number.length > 1) {
-      setNumber((prevNumbers) => prevNumbers.filter((_, i) => i !== index));
-    }
-  };
+
   const handleAddEmail = () => {
     setEmail((prevEmails) => [...prevEmails, ""]);
   };
@@ -52,11 +48,28 @@ const EditContact = ({ selectedContact, onEdit }) => {
     });
   };
 
-  const handleDeleteEmail = (index) => {
-    if (email.length > 1) {
-      setEmail((prevEmails) => prevEmails.filter((_, i) => i !== index));
-    }
+  const handleDelete = (index, isLast, setState) => {
+    setState((prevValues) => {
+      if (prevValues.length > 1) {
+        if (isLast) {
+          return prevValues.map((value, i) => (i === index ? "" : value));
+        } else {
+          return prevValues.filter((_, i) => i !== index);
+        }
+      } else {
+        return prevValues.map((value, i) => (i === index ? "" : value));
+      }
+    });
   };
+
+  const handleDeleteNumber = (index) => {
+    handleDelete(index, index === number.length - 1, setNumber);
+  };
+
+  const handleDeleteEmail = (index) => {
+    handleDelete(index, index === email.length - 1, setEmail);
+  };
+
   return (
     <div className="editContact">
       <div className="edit-title">Edit Contact</div>

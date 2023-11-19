@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./addContact.css";
 
 const AddContact = ({ handleAddContact, setShowAddContact }) => {
@@ -9,6 +9,44 @@ const AddContact = ({ handleAddContact, setShowAddContact }) => {
   const [country, setCountry] = useState("");
   const [email, setEmail] = useState([""]);
   const [number, setNumber] = useState([""]);
+
+  const handleInputChange = (type, index, value, setState) => {
+    setState((prevValues) => {
+      const updatedValues = [...prevValues];
+      updatedValues[index] = value;
+      return updatedValues;
+    });
+  };
+
+  const handleAddItem = (type) => {
+    if (type === "email") {
+      setEmail((prevEmails) => [...prevEmails, ""]);
+    } else if (type === "number") {
+      setNumber((prevNumbers) => [...prevNumbers, ""]);
+    }
+  };
+
+  const handleDeleteItem = (type, index) => {
+    if (type === "email") {
+      handleDelete(index, index === email.length - 1, setEmail);
+    } else if (type === "number") {
+      handleDelete(index, index === number.length - 1, setNumber);
+    }
+  };
+
+  const handleDelete = (index, isLast, setState) => {
+    setState((prevValues) => {
+      if (prevValues.length > 1) {
+        if (isLast) {
+          return prevValues.map((value, i) => (i === index ? "" : value));
+        } else {
+          return prevValues.filter((_, i) => i !== index);
+        }
+      } else {
+        return prevValues.map((value, i) => (i === index ? "" : value));
+      }
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,41 +75,6 @@ const AddContact = ({ handleAddContact, setShowAddContact }) => {
     handleAddContact(newContact);
 
     setShowAddContact(false);
-  };
-
-  const handleAddNumber = () => {
-    setNumber((prevNumbers) => [...prevNumbers, ""]);
-  };
-
-  const handleNumberChange = (index, value) => {
-    setNumber((prevNumbers) => {
-      const updatedNumbers = [...prevNumbers];
-      updatedNumbers[index] = value;
-      return updatedNumbers;
-    });
-  };
-  const handleDeleteNumber = (index) => {
-    if (number.length > 1) {
-      setNumber((prevNumbers) => prevNumbers.filter((_, i) => i !== index));
-    }
-  };
-
-  const handleAddEmail = () => {
-    setEmail((prevEmails) => [...prevEmails, ""]);
-  };
-
-  const handleEmailChange = (index, value) => {
-    setEmail((prevEmails) => {
-      const updatedEmails = [...prevEmails];
-      updatedEmails[index] = value;
-      return updatedEmails;
-    });
-  };
-
-  const handleDeleteEmail = (index) => {
-    if (email.length > 1) {
-      setEmail((prevEmails) => prevEmails.filter((_, i) => i !== index));
-    }
   };
 
   return (
@@ -141,7 +144,9 @@ const AddContact = ({ handleAddContact, setShowAddContact }) => {
                   className="numbers-input"
                   type="email"
                   value={email}
-                  onChange={(e) => handleEmailChange(index, e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("email", index, e.target.value, setEmail)
+                  }
                   placeholder={`Enter Email ${index + 1}`}
                   required={true}
                 />
@@ -153,7 +158,7 @@ const AddContact = ({ handleAddContact, setShowAddContact }) => {
                     : "delete-email-input hidden"
                 }
                 type="button"
-                onClick={() => handleDeleteEmail(index)}
+                onClick={() => handleDeleteItem("email", index)}
               >
                 {email.length > 1 ? "Delete email" : ""}
               </button>
@@ -162,7 +167,7 @@ const AddContact = ({ handleAddContact, setShowAddContact }) => {
         </div>
         <button
           type="button"
-          onClick={handleAddEmail}
+          onClick={() => handleAddItem("email")}
           className="add-email-button"
         >
           Add email
@@ -178,7 +183,14 @@ const AddContact = ({ handleAddContact, setShowAddContact }) => {
                   className="numbers-input"
                   type="number"
                   value={number}
-                  onChange={(e) => handleNumberChange(index, e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange(
+                      "number",
+                      index,
+                      e.target.value,
+                      setNumber
+                    )
+                  }
                   placeholder={`Enter Number ${index + 1}`}
                   required={true}
                 />
@@ -190,7 +202,7 @@ const AddContact = ({ handleAddContact, setShowAddContact }) => {
                     : "delete-number-input hidden"
                 }
                 type="button"
-                onClick={() => handleDeleteNumber(index)}
+                onClick={() => handleDeleteItem("number", index)}
               >
                 {number.length > 1 ? "Delete number" : ""}
               </button>
@@ -200,7 +212,7 @@ const AddContact = ({ handleAddContact, setShowAddContact }) => {
         <button
           className="add-num-button"
           type="button"
-          onClick={handleAddNumber}
+          onClick={() => handleAddItem("number")}
         >
           Add Number
         </button>
